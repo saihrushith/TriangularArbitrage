@@ -12,4 +12,5 @@ RUN pip3 install --no-cache-dir -U setuptools wheel pip \
     && pip3 install --no-cache-dir -r requirements.txt \
     && python3 setup.py install
 
-ENTRYPOINT ["python3", "main.py"]
+ENV PORT=8000
+CMD ["sh", "-c", "uvicorn server:app --host 0.0.0.0 --port $PORT"]
